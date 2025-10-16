@@ -1,13 +1,12 @@
 .PHONY: init plan apply destroy
-BIRD_ENV=dev-01
 init:
-	terraform init
+	terraform init -var-file=workspace_vars/state.tfvars
 
 plan: init
-	terraform plan 
+	terraform plan -var-file=workspace_vars/state.tfvars
 
 apply: init
-	terraform apply
+	terraform apply -var-file=workspace_vars/state.tfvars
 
 destroy: init
-	terraform destroy
+	terraform destroy -var-file=workspace_vars/state.tfvars
