@@ -1,4 +1,4 @@
-region = "us-east-1"
+region = ""
 username = [
   "oleh_bulka",
   "taras_andreiko",
