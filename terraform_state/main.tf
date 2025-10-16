@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = ""
 }
 
 terraform {
@@ -13,7 +13,7 @@ terraform {
   backend "s3" {
     bucket         = "terraform-state-illuminati"
     key            = "terraform-state/terraform.tfstate"
-    region         = "us-east-1"
+    region         = ""
     dynamodb_table = "terraform-locks"
     encrypt        = true
   }
