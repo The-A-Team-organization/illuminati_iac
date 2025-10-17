@@ -38,6 +38,11 @@ resource "aws_iam_role_policy_attachment" "jenkins_ssm" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
 }
 
+resource "aws_iam_role_policy_attachment" "jenkins_ssm" {
+  role       = aws_iam_role.jenkins_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+}
+
 resource "aws_iam_instance_profile" "jenkins_profile" {
   name = "jenkins_profile"
   role = aws_iam_role.jenkins_role.name
