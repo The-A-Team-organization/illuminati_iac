@@ -8,6 +8,7 @@ variable "common_tags" {
   default = {
     "CreatedBy"   = "Terraform"
     "Project"     = "Illuminati"
+    "Environment" = "dev"
     "Repository"  = "https://github.com/The-A-Team-organization/illuminati_iac"
     "Module"      = "environment_setup"
   }
