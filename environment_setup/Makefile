@@ -8,8 +8,8 @@ plan: init
 	terraform plan -var-file=workspace_vars/${BIRD_ENV}.tfvars
 
 apply: init
-	terraform apply -var-file=workspace_vars/${BIRD_ENV}.tfvars -auto-approve
+	terraform apply -var-file=workspace_vars/${BIRD_ENV}.tfvars
 
 destroy: init
-	terraform destroy -var-file=workspace_vars/${BIRD_ENV}.tfvars -auto-approve
+	terraform destroy -var-file=workspace_vars/${BIRD_ENV}.tfvars
 
