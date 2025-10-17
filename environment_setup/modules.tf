@@ -10,6 +10,7 @@ module "Jenkins" {
   env                         = var.env
   region                      = var.region
   ami                         = var.ami
+  instance_type               = var.instance_type
   availability_zone           = var.availability_zone
 }
 
