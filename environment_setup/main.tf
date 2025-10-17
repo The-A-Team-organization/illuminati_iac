@@ -19,12 +19,12 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "terraform-state-illuminati"
-    key            = "account-setup/terraform.tfstate"
-    region         = var.region
-    dynamodb_table = "terraform-locks"
-    encrypt        = true
-  }
+  #backend "s3" {
+  #  bucket         = "terraform-state-illuminati"
+  #  key            = "account-setup/terraform.tfstate"
+  #  region         = var.region
+  #  dynamodb_table = "terraform-locks"
+  #  encrypt        = true
+  #}
 }
 
