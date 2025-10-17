@@ -23,6 +23,11 @@ variable "ami" {
   type        = string
 }
 
+variable "instance_type" {
+  description = "The instance type for the Jenkins EC2 instance"
+  type        = string
+}
+
 variable "common_tags" {
   type = map(string)
   default = {

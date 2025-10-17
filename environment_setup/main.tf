@@ -4,7 +4,7 @@ provider "aws" {
     tags = {
       "CreatedBy"   = "Terraform"
       "Project"     = "Illuminati"
-      "Environment" = "${env}"
+      "Environment" = "${var.env}"
       "Repository"  = "https://github.com/The-A-Team-organization/illuminati_iac"
       "Module"      = "environment_setup"
     }
@@ -22,7 +22,7 @@ terraform {
   backend "s3" {
     bucket         = "terraform-state-illuminati"
     key            = "account-setup/terraform.tfstate"
-    region         = "us-east-1"
+    region         = var.region
     dynamodb_table = "terraform-locks"
     encrypt        = true
   }
