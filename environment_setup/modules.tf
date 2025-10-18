@@ -14,3 +14,9 @@ module "Jenkins" {
   availability_zone           = var.availability_zone
 }
 
+module "ecr" {
+  source       = "./modules/ecr/"
+  env          = var.env
+  region       = var.region
+  repositories = ["frontend", "backend", "go_service", "mariadb"]
+}
