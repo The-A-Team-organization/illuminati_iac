@@ -30,7 +30,7 @@ pipeline {
     post {
         success {
             echo 'Success...'
-            echo 'Send status Success to Mail, Telegram, Slack...'
+            echo 'Webhook was triggered'
         }
         failure {
             echo 'Failure...'
