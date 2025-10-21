@@ -3,7 +3,7 @@ module "vpc" {
   region = var.region
 }
 
-module "Jenkins" {
+module "jenkins" {
   source                      = "./modules/jenkins"
   vpc_id                      = module.vpc.vpc_id
   private_subnets_for_jenkins = var.private_subnets_for_jenkins
