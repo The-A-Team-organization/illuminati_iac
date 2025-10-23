@@ -7,7 +7,7 @@
     "andreiko",
     "bulka",
     "jdbc",
-    "liquibase"
+    "liquibase",
     "natgateway",
     "oleh",
     "oleksandr",
@@ -16,6 +16,5 @@
     "taras",
     "tfvars",
     "tfvar"
-    
   ]
 }
