@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  docker_go:
+    build: ./illuminati_service_go/service
+    container_name: container_go
+    env_file: ./illuminati_service_go/.env
+    ports:
+      - "8080:8080"
+
+    environment:
+      - MOCK_URL=http://backend:8000/api/entry_password/participants
+      - SET_SECRET_URL=http://backend:8000/api/entry_password/set/
+
+  backend:
+    build: ./illuminati_backend
+    container_name: backend
+    env_file:
+      - ./illuminati_backend/.env
+    ports:
+      - "8000:8000"
+
+  django_front:
+    build: ./illuminati_frontend
+    image: react_front
+    container_name: django_front
+    ports:
+      - "5173:5173"
