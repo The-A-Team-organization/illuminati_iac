@@ -13,8 +13,8 @@ variable "ami" {
   type        = string
 }
 
-variable "private_subnets_for_jenkins" {
-  description = "The subnet where Jenkins will be deployed"
+variable "public_subnet" {
+  description = "The subnet where Jenkins and SonarQube will be deployed"
   type        = string
 }
 

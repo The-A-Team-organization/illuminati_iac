@@ -1,5 +1,5 @@
 variable "vpc_id" {
-  description = "The VPC ID where Jenkins will be deployed"
+  description = "The VPC ID where Sonarqube will be deployed"
   type        = string
 }
 
@@ -10,10 +10,12 @@ variable "public_subnet" {
 }
 
 
-variable "jenkins_security_group" {
+variable "sonarqube_security_group" {
   description = "The security group for jenkins"
   type        = string
 }
+
+
 
 
 variable "env" {
@@ -35,7 +37,7 @@ variable "ami" {
 
 
 variable "instance_type" {
-  description = "The instance type for the Jenkins EC2 instance"
+  description = "The instance type for the Sonarqube EC2 instance"
   type        = string
 }
 
