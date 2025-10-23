@@ -2,6 +2,7 @@ provider "aws" {
   region = var.region
 }
 
+
 terraform {
   required_providers {
     aws = {
@@ -10,11 +11,13 @@ terraform {
     }
   }
 
+
   backend "s3" {
-    bucket         = "terraform-state-illuminati"
-    key            = "terraform-state/terraform.tfstate"
-    region         = var.region
-    dynamodb_table = "terraform-locks"
+    bucket         = "terraform-state-illuminati-bucket-frankfurt"
+    key            = "terraform_state/terraform.tfstate"
+    region         = "eu-central-1"
+    dynamodb_table = "terraform_locks"
     encrypt        = true
   }
 }
+

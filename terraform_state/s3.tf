@@ -1,19 +1,21 @@
-resource "aws_s3_bucket" "terraform-state" {
-  bucket = "terraform-state-illuminati"
+resource "aws_s3_bucket" "terraform_state" {
+  bucket = "terraform-state-illuminati-bucket-frankfurt"
   lifecycle {
     prevent_destroy = true
   }
 }
 
+
 resource "aws_s3_bucket_versioning" "enabled" {
-  bucket = aws_s3_bucket.terraform-state.id
+  bucket = aws_s3_bucket.terraform_state.id
   versioning_configuration {
     status = "Enabled"
   }
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "terraform-state-encryption" {
-  bucket = aws_s3_bucket.terraform-state.id
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_encryption" {
+  bucket = aws_s3_bucket.terraform_state.id
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256"
@@ -21,16 +23,18 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "terraform-state-e
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "public-access" {
-  bucket                  = aws_s3_bucket.terraform-state.id
+
+resource "aws_s3_bucket_public_access_block" "public_access" {
+  bucket                  = aws_s3_bucket.terraform_state.id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
 
-resource "aws_dynamodb_table" "terraform-locks" {
-  name         = "terraform-locks"
+
+resource "aws_dynamodb_table" "terraform_locks" {
+  name         = "terraform_locks"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
   attribute {
@@ -38,3 +42,4 @@ resource "aws_dynamodb_table" "terraform-locks" {
     type = "S"
   }
 }
+
