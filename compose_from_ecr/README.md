@@ -98,7 +98,7 @@ run-compose.sh for Linux/macOS
 
 ### 6. Prepare environment files
 
-In a new terminal:
+In a new terminal **compose_from_ecr**:
 
 ```bash
 cp .env.example .env
@@ -116,7 +116,7 @@ If needed, configure .env according to its README (usually for API endpoints).
 
 ### 7. Run all services
 
-From the root of the main **compose from ecr** repository:
+From the root of the main **compose_from_ecr** repository:
 
 ```bash
 docker compose up
