@@ -86,9 +86,7 @@ docker compose up --build
 
 Liquibase will apply all migrations automatically.
 
-### 5. Run Liquibase migrations
-
-This is required so Docker can pull images from AWS ECR.
+### 5. This is required so Docker can pull images from AWS ECR.
 
 There are helper scripts included:
 
