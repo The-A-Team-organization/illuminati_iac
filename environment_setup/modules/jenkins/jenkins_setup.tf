@@ -67,5 +67,9 @@ resource "aws_instance" "jenkins_instance" {
 
 }
 
-
-
+resource "aws_eip" "jenkins_eip" {
+  instance = aws_instance.jenkins_instance.id
+  tags = merge(var.common_tags, {
+    Name = "jenkins_eip_${var.env}"
+  })
+}
