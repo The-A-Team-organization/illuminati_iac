@@ -61,3 +61,10 @@ resource "aws_instance" "sonarqube_instance" {
 
 }
 
+resource "aws_eip" "sonarqube_eip" {
+  instance = aws_instance.sonarqube_instance.id
+  tags = merge(var.common_tags, {
+    Name = "sonarqube_eip_${var.env}"
+  })
+}
+

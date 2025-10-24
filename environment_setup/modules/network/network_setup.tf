@@ -91,23 +91,6 @@ resource "aws_route" "public_route" {
   gateway_id             = aws_internet_gateway.igw.id
 }
 
-
-resource "aws_eip" "nat_eip" {
-  tags = merge(var.common_tags, {
-    Name    = "nat_eip_${var.env}"
-    Project = "Illuminati"
-  })
-}
-
-
-resource "aws_nat_gateway" "natgateway" {
-  allocation_id = aws_eip.nat_eip.allocation_id
-  subnet_id     = aws_subnet.public_subnet.id
-}
-
-
-
-
 resource "aws_route_table_association" "public_subnet_association" {
   subnet_id      = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.public_route_table.id
