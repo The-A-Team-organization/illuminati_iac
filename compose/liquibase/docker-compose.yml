@@ -1,0 +1,15 @@
+services:
+  liquibase:
+    image: liquibase/liquibase:4.25.1
+    container_name: liquibase_runner
+    volumes:
+      - ../illuminati_backend/liquibase:/liquibase/changelogs
+    working_dir: /liquibase
+    command:
+      [
+        "--url=jdbc:mariadb://host.docker.internal:3325/${MYSQL_DATABASE}",
+        "--username=${MYSQL_USER}",
+        "--password=${MYSQL_PASSWORD}",
+        "--defaults-file=changelogs/liquibase_db.properties",
+        "update",
+      ]
