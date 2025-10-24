@@ -73,7 +73,7 @@ SECRET_KEY=django-insecure-secret-key
 
 in **illuminati_backend\liquibase\liquibase_db.properties**
 and in **illuminati_backend\liquibase\run_migrations.xml**
-change path directory **liquibase** from to **changelogs**
+change path directory from **liquibase** to **changelogs**
 
 **Go Service** (illuminati_service_go)
 
@@ -123,7 +123,7 @@ Once everything is running:
 
 Backend should be accessible at: http://localhost:8000
 
-Frontend should be accessible at: http://localhost:5137
+Frontend should be accessible at: http://localhost:5173
 
 Go service (API) should respond on http://localhost:8080
 
