@@ -94,6 +94,13 @@ run-compose.ps1 for Windows
 
 run-compose.sh for Linux/macOS
 
+```bash
+# Make the script executable
+chmod 777 run-compose.sh
+
+./run-compose.sh
+```
+
 ### 5.1 Prepare environment files
 
 In a new terminal from **compose_from_ecr**:
