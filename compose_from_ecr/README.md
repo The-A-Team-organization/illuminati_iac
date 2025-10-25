@@ -101,12 +101,12 @@ In a new terminal from **compose_from_ecr**:
 ```bash
 cp .env.example .env
 ```
+
 put your aws ID and Region in .env
 
 ### 6. Prepare environment files
 
 In a new terminal from **compose_from_ecr**:
-
 
 **Go Service** (illuminati_service_go)
 
