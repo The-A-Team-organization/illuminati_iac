@@ -58,7 +58,7 @@ docker compose down -v
 
 ### 3. Clone the backend repositories
 
-In another terminal (from your preferred workspace folder):
+In another terminal from **compose** folder:
 
 ```bash
 git clone git@github.com:The-A-Team-organization/illuminati_backend.git
@@ -94,13 +94,19 @@ run-compose.ps1 for Windows
 
 run-compose.sh for Linux/macOS
 
-### 6. Prepare environment files
+### 5.1 Prepare environment files
 
-In a new terminal **compose_from_ecr**:
+In a new terminal from **compose_from_ecr**:
 
 ```bash
 cp .env.example .env
 ```
+put your aws ID and Region in .env
+
+### 6. Prepare environment files
+
+In a new terminal from **compose_from_ecr**:
+
 
 **Go Service** (illuminati_service_go)
 
