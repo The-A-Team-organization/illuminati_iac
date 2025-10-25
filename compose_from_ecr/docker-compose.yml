@@ -1,0 +1,23 @@
+services:
+  frontend:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/frontend_dev:latest
+    container_name: container_front
+    ports:
+      - "5173:5173"
+
+  backend:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/backend_dev:latest
+    container_name: backend
+    env_file: .env
+    ports:
+      - "8000:8000"
+
+  go_service:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/go_service_dev:latest
+    container_name: container_go
+    env_file: .env
+    ports:
+      - "8080:8080"
+    environment:
+      - MOCK_URL=http://backend:8000/api/users/participants/
+      - SET_SECRET_URL=http://backend:8000/api/entry_password/set/
