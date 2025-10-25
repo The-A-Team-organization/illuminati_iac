@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e  # Stop on first error
 
 AWS_REGION="eu-central-1"
