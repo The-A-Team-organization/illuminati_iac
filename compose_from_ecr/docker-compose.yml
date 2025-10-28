@@ -11,6 +11,9 @@ services:
     env_file: .env
     ports:
       - "8000:8000"
+    volumes:
+      - my_images:/app/shared/images
+
 
   go_service:
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/go_service_dev:latest
@@ -21,3 +24,6 @@ services:
     environment:
       - MOCK_URL=http://backend:8000/api/users/participants/
       - SET_SECRET_URL=http://backend:8000/api/entry_password/set/
+      
+volumes:
+  my_images:
