@@ -19,6 +19,8 @@ services:
       - ./illuminati_backend/.env
     ports:
       - "8000:8000"
+    volumes:
+      - my_images:/app/shared/images
 
   react_front:
     build: ./illuminati_frontend
@@ -27,3 +29,6 @@ services:
 
     ports:
       - "5173:5173"
+
+volumes:
+  my_images:
