@@ -30,7 +30,7 @@ module "ecr" {
   source       = "./modules/ecr/"
   env          = var.env
   region       = var.region
-  repositories = ["frontend", "backend", "go_service", "mariadb"]
+  repositories = ["frontend", "backend", "go_service", "mariadb","scheduler"]
 }
 
 
