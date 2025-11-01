@@ -1,4 +1,46 @@
 services:
+  mariadb:
+    image: mariadb:11.4
+    container_name: my_mariadb_test
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    ports:
+      - "3325:3306"
+
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 20s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  liquibase:
+    image: liquibase/liquibase:4.25.1
+    container_name: liquibase_runner
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    volumes:
+      - ./liquibase:/liquibase/changelogs
+    working_dir: /liquibase
+    command:
+      [
+        "--url=jdbc:mariadb://mariadb:3306/${MYSQL_DATABASE}",
+        "--username=${MYSQL_USER}",
+        "--password=${MYSQL_PASSWORD}",
+        "--defaults-file=changelogs/liquibase_db.properties",
+        "update",
+      ]
+
   frontend:
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/frontend_dev:latest
     container_name: container_front
@@ -7,7 +49,11 @@ services:
 
   backend:
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/backend_dev:latest
+    # image: git-backend
     container_name: backend
+    depends_on:
+      mariadb:
+        condition: service_healthy
     env_file: .env
     ports:
       - "8000:8000"
@@ -17,6 +63,9 @@ services:
   go_service:
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/go_service_dev:latest
     container_name: container_go
+    depends_on:
+      mariadb:
+        condition: service_healthy
     env_file: .env
     ports:
       - "8080:8080"
@@ -24,5 +73,14 @@ services:
       - MOCK_URL=http://backend:8000/api/users/participants/
       - SET_SECRET_URL=http://backend:8000/api/entry_password/set/
 
+  docker_go:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/scheduler_dev:latest
+    # image: illuminati_scheduler_service-docker_go
+    container_name: container_scheduler
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
 volumes:
   my_images:
+  mariadb_data:
