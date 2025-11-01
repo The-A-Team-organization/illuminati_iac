@@ -6,7 +6,11 @@
     "aleksyeyev",
     "andreiko",
     "bulka",
+    "CURDATE",
     "jdbc",
+    "healthcheck",
+    "innodb",
+    "illuminaties",
     "liquibase",
     "natgateway",
     "oleh",
@@ -15,6 +19,7 @@
     "sskeygen",
     "taras",
     "tfvars",
-    "tfvar"
+    "tfvar",
+    "VARCHAR"
   ]
 }
