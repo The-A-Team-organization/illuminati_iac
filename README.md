@@ -55,7 +55,6 @@ Includes locking to prevent concurrent modifications.
 - SonarQube → Code quality and security scanning
 - Liquibase → Database version control
 
-
 ## Security and Compliance
 
 - Uses .gitleaks for secret scanning
@@ -66,8 +65,8 @@ Includes locking to prevent concurrent modifications.
 
 Illuminati IaC is part of a multi-service ecosystem managed with Terraform and Docker.
 
-- [illuminati_backend](https://github.com/The-A-Team-organization/illuminati_backend)	→ REST API & business logic (Python)
-- [illuminati_email_service](https://github.com/The-A-Team-organization/illuminati_email_service)	→ Email delivery and password reset microservice (Go)
-- [illuminati_scheduler_service](https://github.com/The-A-Team-organization/illuminati_scheduler_service)	→ Scheduled automation service (Go)
+- [illuminati_backend](https://github.com/The-A-Team-organization/illuminati_backend) → REST API & business logic (Python)
+- [illuminati_email_service](https://github.com/The-A-Team-organization/illuminati_email_service) → Email delivery and password reset microservice (Go)
+- [illuminati_scheduler_service](https://github.com/The-A-Team-organization/illuminati_scheduler_service) → Scheduled automation service (Go)
 - [illuminati_iac](https://github.com/The-A-Team-organization/illuminati_iac)(This repository) → Infrastructure (Terraform, Docker)
-- [illuminati_frontend](https://github.com/The-A-Team-organization/illuminati_frontend)  →	 the user interface (React)
+- [illuminati_frontend](https://github.com/The-A-Team-organization/illuminati_frontend) → the user interface (React)
