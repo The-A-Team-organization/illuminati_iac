@@ -1,7 +1,7 @@
 # Illuminati Project — Local Setup Guide
 
 This guide explains how to run the full **Illuminati Project** locally using **Docker Compose** pulling images for AWS ECR.  
-The project includes multiple components: **database**, **Liquibase migrations**, **backend (Django)**, **frontend**, and **Go service**.
+The project includes multiple components: **database**, **Liquibase migrations**, **backend (Django)**, **frontend**, and **Go microservices**.
 
 ---
 
@@ -31,62 +31,22 @@ aws configure
 
 ```bash
 git clone git@github.com:The-A-Team-organization/illuminati_iac.git
-cd compose
+cd compose_from_ecr
 ```
 
-### 2. Start the database
-
 ```bash
-cd compose/database
 cp .env.example .env
 ```
 
-Fill in your database credentials in .env.
-Then run:
+Fill in your credentials in .env.
 
-```bash
-docker compose up --build
-```
+Go Mailer
 
-This will start the MariaDB container.
+Prepare the .env file as described in the Go service’s own README.
 
-\*keep in mind - to ensures that volumes (like database data) are also removed, giving you a clean start.
+https://github.com/The-A-Team-organization/illuminati_email_service/blob/main/README.md
 
-```bash
-docker compose down -v
-```
-
-### 3. Clone the backend repositories
-
-In another terminal from **compose** folder:
-
-```bash
-git clone git@github.com:The-A-Team-organization/illuminati_backend.git
-```
-
-in **illuminati_backend\liquibase\liquibase_db.properties**
-and in **illuminati_backend\liquibase\run_migrations.xml**
-change path directory from **liquibase** to **changelogs**
-
-### 4. Run Liquibase migrations
-
-In a new terminal:
-
-```bash
-cd compose/liquibase
-cp .env.example .env
-```
-
-Update the .env with the same database credentials you used earlier.
-Then run:
-
-```bash
-docker compose up --build
-```
-
-Liquibase will apply all migrations automatically.
-
-### 5. This is required so Docker can pull images from AWS ECR.
+### 2. This is required so Docker can pull images from AWS ECR.
 
 There are helper scripts included:
 
@@ -101,47 +61,25 @@ chmod 777 run-compose.sh
 ./run-compose.sh
 ```
 
-### 5.1 Prepare environment files
-
-In a new terminal from **compose_from_ecr**:
+### 4. Start
 
 ```bash
-cp .env.example .env
+docker compose up --build
 ```
 
-put your aws ID and Region in .env
+This will start the MariaDB container.
 
-### 6. Prepare environment files
-
-In a new terminal from **compose_from_ecr**:
-
-**Go Service** (illuminati_service_go)
-
-Prepare the .env file as described in the Go service’s own README.
-
-https://github.com/The-A-Team-organization/illuminati_service_go/blob/main/README.md
-
-**Frontend** (illuminati_frontend)
-
-If needed, configure .env according to its README (usually for API endpoints).
-
-### 7. Run all services
-
-From the root of the main **compose_from_ecr** repository:
-
-```bash
-docker compose up
-```
-
-This will start:
+Liquibase will apply all migrations automatically.
 
 Backend
 
 Frontend
 
-Go service
+Go Mailer
 
-### 8. Verification
+Go Scheduler
+
+### 5. Verification
 
 Once everything is running:
 
@@ -149,20 +87,14 @@ Backend should be accessible at: http://localhost:8000
 
 Frontend should be accessible at: http://localhost:5173
 
-Go service (API) should respond on http://localhost:8080
+Go mailer (API) should respond on http://localhost:8080
 
-### 9. Useful Commands
+### 4. Useful Commands
 
 Stop all containers:
 
 ```bash
 docker compose down
-```
-
-Rebuild everything:
-
-```bash
-docker compose up --build --force-recreate
 ```
 
 Check running containers:
